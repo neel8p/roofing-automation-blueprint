@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Roofing Agency — Automation Dev Plan</title>
+<script>
+(function(){
+  var P="TAD2026",K="rab_v2";
+  if(sessionStorage.getItem(K)!=="1"){
+    document.addEventListener("DOMContentLoaded",function(){
+      document.body.style.display="none";
+      var o=document.createElement("div");
+      o.id="gate";
+      o.innerHTML='<div style="position:fixed;inset:0;background:#090b10;display:flex;align-items:center;justify-content:center;z-index:99999;font-family:system-ui"><div style="background:#13161f;border:1px solid #252836;border-radius:16px;padding:44px 40px;width:360px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.6)"><div style="font-size:40px;margin-bottom:14px">🏗️</div><h2 style="color:#f1f5f9;font-size:22px;font-weight:800;margin-bottom:6px">Roofing Dev Plan</h2><p style="color:#64748b;font-size:13px;margin-bottom:28px">Enter your access code to continue</p><input id="pi" type="password" placeholder="Access code" autocomplete="off" style="width:100%;padding:13px 16px;border-radius:8px;border:1px solid #252836;background:#090b10;color:#f1f5f9;font-size:15px;outline:none;margin-bottom:10px;box-sizing:border-box;transition:border .2s"/><div id="pe" style="color:#ef4444;font-size:12px;min-height:18px;margin-bottom:10px"></div><button id="pb" style="width:100%;padding:13px;border-radius:8px;background:linear-gradient(135deg,#f97316,#ea580c);border:none;color:#fff;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:.01em">Unlock →</button></div></div>';
+      document.body.parentNode.insertBefore(o,document.body);
+      function go(){var v=document.getElementById("pi").value;if(v===P){sessionStorage.setItem(K,"1");document.getElementById("gate").remove();document.body.style.display="";}else{document.getElementById("pe").textContent="Incorrect — try again";document.getElementById("pi").value="";document.getElementById("pi").focus();}}
+      document.getElementById("pb").addEventListener("click",go);
+      document.getElementById("pi").addEventListener("keydown",function(e){if(e.key==="Enter")go();});
+      document.getElementById("pi").addEventListener("focus",function(){this.style.borderColor="#f97316";});
+      document.getElementById("pi").addEventListener("blur",function(){this.style.borderColor="#252836";});
+      document.getElementById("pi").focus();
+    });
+  }
+})();
+</script>
+<style>
+:root{
+  --bg:#090b10;--s1:#0f1219;--s2:#13161f;--s3:#191d2a;--s4:#1e2233;
+  --bd:#1e2233;--bd2:#252836;--bd3:#2e3347;
+  --tx:#f1f5f9;--mu:#64748b;--mu2:#94a3b8;--mu3:#cbd5e1;
+  --or:#f97316;--bl:#3b82f6;--gr:#22c55e;--re:#ef4444;
+  --ye:#eab308;--pu:#a855f7;--cy:#06b6d4;--pi:#ec4899;
+  --r:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--tx);font-family:'Inter',system-ui,-apple-system,sans-serif;min-height:100vh;overflow-x:hidden;}
+button{font-family:inherit;}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--s1);border-bottom:1px solid var(--bd);padding:0 28px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;}
+.t-logo{font-size:16px;font-weight:800;letter-spacing:-.02em;display:flex;align-items:center;gap:8px;}
+.t-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--or);}
+.t-divider{width:1px;height:18px;background:var(--bd3);margin:0 12px;}
+.t-proj{font-size:12px;color:var(--mu2);}
+.t-right{display:flex;align-items:center;gap:6px;}
+.nav-btn{padding:6px 14px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;color:var(--mu2);background:transparent;border:1px solid transparent;transition:all .15s;}
+.nav-btn:hover{color:var(--tx);background:var(--s3);}
+.nav-btn.active{background:var(--s3);color:var(--tx);border-color:var(--bd3);}
+.status-badge{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--mu);padding:4px 10px;border-radius:6px;background:var(--s2);border:1px solid var(--bd2);margin-left:8px;}
+.status-badge .pulse{width:7px;height:7px;border-radius:50%;background:var(--ye);box-shadow:0 0 0 2px rgba(234,179,8,.2);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 2px rgba(234,179,8,.2);}50%{box-shadow:0 0 0 5px rgba(234,179,8,.08);}}
+
+/* ── PAGE ── */
+.page{display:none;padding:24px 28px 80px;}
+.page.active{display:block;}
+
+/* ── SECTION HEAD ── */
+.sh{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);margin-bottom:14px;}
+.sh::after{content:'';flex:1;height:1px;background:var(--bd);}
+
+/* ── GRIDS ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+@media(max-width:960px){.g3,.g4{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.g2,.g3,.g4{grid-template-columns:1fr;}.page,.topbar{padding-left:14px;padding-right:14px;}}
+
+/* ── CARDS ── */
+.card{background:var(--s2);border:1px solid var(--bd2);border-radius:var(--r);padding:18px;}
+.card-sm{background:var(--s3);border:1px solid var(--bd2);border-radius:8px;padding:14px;}
+
+/* ── STAT ── */
+.stat{background:var(--s2);border:1px solid var(--bd2);border-radius:var(--r);padding:18px 20px;}
+.stat-n{font-size:32px;font-weight:800;line-height:1;}
+.stat-l{font-size:12px;color:var(--mu);margin-top:5px;}
+.stat-s{font-size:11px;color:var(--mu);margin-top:5px;}
+
+/* ── PILL ── */
+.pill{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;white-space:nowrap;}
+.pg{background:rgba(34,197,94,.12);color:var(--gr);}
+.pr{background:rgba(239,68,68,.12);color:var(--re);}
+.py{background:rgba(234,179,8,.12);color:var(--ye);}
+.pb2{background:rgba(59,130,246,.12);color:var(--bl);}
+.po{background:rgba(249,115,22,.12);color:var(--or);}
+.pp{background:rgba(168,85,247,.12);color:var(--pu);}
+.pc{background:rgba(6,182,212,.12);color:var(--cy);}
+.pm{background:var(--s4);color:var(--mu2);}
+
+/* ── STATUS ROW ── */
+.sr{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:8px;background:var(--s3);border:1px solid var(--bd2);font-size:13px;}
+.sr .ico{font-size:17px;flex-shrink:0;}
+.sr .lbl{flex:1;font-weight:600;}
+.sr .det{font-size:11px;color:var(--mu);}
+
+/* ── PIPELINE ── */
+.pipeline{display:flex;overflow-x:auto;gap:0;margin-top:4px;}
+.ps{flex:1;min-width:95px;padding:11px 8px;text-align:center;font-size:11px;font-weight:600;color:var(--mu2);background:var(--s3);border:1px solid var(--bd2);position:relative;}
+.ps:first-child{border-radius:8px 0 0 8px;}
+.ps:last-child{border-radius:0 8px 8px 0;}
+.ps:not(:last-child){border-right:none;}
+.ps:not(:last-child)::after{content:'›';position:absolute;right:-7px;top:50%;transform:translateY(-50%);color:var(--bd3);font-size:14px;z-index:1;}
+.ps .e{font-size:20px;display:block;margin-bottom:4px;}
+
+/* ── PROGRESS BAR ── */
+.pb-wrap{margin-top:6px;}
+.pb-lbl{display:flex;justify-content:space-between;font-size:11px;color:var(--mu);margin-bottom:4px;}
+.pb{height:5px;background:var(--s4);border-radius:999px;overflow:hidden;}
+.pb-f{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--or),#fb923c);transition:width .4s ease;}
+.pb-f.blue{background:linear-gradient(90deg,var(--bl),#60a5fa);}
+.pb-f.green{background:linear-gradient(90deg,var(--gr),#4ade80);}
+
+/* ── TAG CLOUD ── */
+.tc{display:flex;flex-wrap:wrap;gap:5px;}
+.tg{font-size:10px;padding:3px 8px;border-radius:999px;background:var(--s3);border:1px solid var(--bd2);color:var(--mu);font-weight:500;}
+.tg.o{border-color:rgba(249,115,22,.4);color:var(--or);background:rgba(249,115,22,.06);}
+.tg.b{border-color:rgba(59,130,246,.4);color:var(--bl);background:rgba(59,130,246,.06);}
+.tg.g{border-color:rgba(34,197,94,.4);color:var(--gr);background:rgba(34,197,94,.06);}
+.tg.p{border-color:rgba(168,85,247,.4);color:var(--pu);background:rgba(168,85,247,.06);}
+
+/* ── CV TABLE ── */
+.cv-t{width:100%;border-collapse:collapse;font-size:12px;}
+.cv-t tr{border-bottom:1px solid var(--bd);}
+.cv-t tr:last-child{border-bottom:none;}
+.cv-t td{padding:9px 10px;vertical-align:middle;}
+.cv-t td:first-child{font-weight:600;color:var(--tx);width:180px;}
+.cv-t td:nth-child(2){font-family:monospace;color:var(--mu);font-size:11px;}
+.cv-t td:last-child{text-align:right;}
+
+/* ══════════ KANBAN BOARD ══════════ */
+.board-toolbar{display:flex;align-items:center;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+.phase-btn{padding:6px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;color:var(--mu2);background:var(--s2);border:1px solid var(--bd2);transition:all .15s;}
+.phase-btn:hover{color:var(--tx);border-color:var(--bd3);}
+.phase-btn.active{background:var(--s3);color:var(--tx);border-color:var(--or);}
+.add-ticket-btn{margin-left:auto;display:flex;align-items:center;gap:6px;padding:7px 16px;border-radius:8px;background:linear-gradient(135deg,var(--or),#ea580c);border:none;color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s;}
+.add-ticket-btn:hover{opacity:.9;}
+
+.phase-bars{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+
+.board{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:start;}
+@media(max-width:800px){.board{grid-template-columns:1fr;}}
+
+/* Column */
+.col{border-radius:var(--r);overflow:hidden;}
+.col-hd{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:11px 14px;font-size:12px;font-weight:700;
+  border:1px solid var(--bd2);border-bottom:none;
+}
+.col-hd.todo {background:rgba(239,68,68,.06); border-color:rgba(239,68,68,.2); border-radius:var(--r) var(--r) 0 0;}
+.col-hd.doing{background:rgba(249,115,22,.06);border-color:rgba(249,115,22,.2);border-radius:var(--r) var(--r) 0 0;}
+.col-hd.done {background:rgba(34,197,94,.06); border-color:rgba(34,197,94,.2); border-radius:var(--r) var(--r) 0 0;}
+.col-body{
+  background:var(--s1);border:1px solid var(--bd2);border-top:none;
+  border-radius:0 0 var(--r) var(--r);
+  padding:8px;display:flex;flex-direction:column;gap:7px;min-height:80px;
+  transition:background .2s;
+}
+.col-body.todo {border-color:rgba(239,68,68,.2);}
+.col-body.doing{border-color:rgba(249,115,22,.2);}
+.col-body.done {border-color:rgba(34,197,94,.2);}
+.col-body.drag-over{background:var(--s3);outline:2px dashed var(--or);}
+.col-empty{padding:20px;text-align:center;font-size:12px;color:var(--mu);}
+
+/* Task card */
+.task{
+  background:var(--s2);border:1px solid var(--bd2);
+  border-radius:8px;padding:12px 12px 10px;
+  cursor:grab;transition:box-shadow .15s,transform .15s,opacity .15s;
+  position:relative;
+}
+.task:hover{box-shadow:0 4px 16px rgba(0,0,0,.35);transform:translateY(-1px);}
+.task.dragging{opacity:.45;cursor:grabbing;transform:rotate(1.5deg);}
+.task.priority-crit{border-left:3px solid var(--re);}
+.task.priority-high{border-left:3px solid var(--or);}
+.task.priority-med {border-left:3px solid var(--ye);}
+.task.priority-low {border-left:3px solid var(--cy);}
+.task-top{display:flex;align-items:flex-start;justify-content:space-between;gap:6px;margin-bottom:6px;}
+.task-title{font-size:13px;font-weight:700;line-height:1.3;flex:1;}
+.task-desc{font-size:11px;color:var(--mu);line-height:1.5;margin-bottom:8px;}
+.task-footer{display:flex;align-items:center;gap:5px;flex-wrap:wrap;}
+.task-tag{font-size:10px;padding:2px 7px;border-radius:999px;background:var(--s4);color:var(--mu2);font-weight:600;}
+.task-ph-tag{font-size:10px;padding:2px 7px;border-radius:999px;background:rgba(249,115,22,.1);color:var(--or);font-weight:700;}
+.task-actions{display:flex;gap:4px;margin-top:8px;}
+.ta-btn{flex:1;padding:5px 0;border-radius:6px;border:1px solid var(--bd2);background:var(--s3);color:var(--mu2);font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;text-align:center;}
+.ta-btn:hover{color:var(--tx);border-color:var(--bd3);}
+.ta-btn.primary{background:rgba(249,115,22,.12);border-color:rgba(249,115,22,.35);color:var(--or);}
+.ta-btn.danger {background:rgba(239,68,68,.08); border-color:rgba(239,68,68,.25); color:var(--re);}
+
+/* ── MODAL ── */
+.modal-bg{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);
+  z-index:1000;align-items:center;justify-content:center;padding:20px;
+}
+.modal-bg.open{display:flex;}
+.modal{
+  background:var(--s2);border:1px solid var(--bd3);border-radius:14px;
+  padding:28px;width:100%;max-width:480px;
+  box-shadow:0 24px 64px rgba(0,0,0,.5);
+}
+.modal h3{font-size:17px;font-weight:800;margin-bottom:20px;}
+.form-row{margin-bottom:14px;}
+.form-label{font-size:12px;font-weight:600;color:var(--mu2);margin-bottom:6px;display:block;}
+.form-input,.form-select,.form-textarea{
+  width:100%;padding:10px 12px;border-radius:8px;
+  border:1px solid var(--bd3);background:var(--s3);color:var(--tx);
+  font-size:13px;font-family:inherit;outline:none;transition:border .2s;
+}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--or);}
+.form-textarea{min-height:80px;resize:vertical;}
+.form-select option{background:var(--s3);}
+.modal-actions{display:flex;gap:8px;margin-top:20px;justify-content:flex-end;}
+.btn-cancel{padding:9px 20px;border-radius:8px;border:1px solid var(--bd3);background:var(--s3);color:var(--mu2);font-size:13px;font-weight:600;cursor:pointer;}
+.btn-cancel:hover{color:var(--tx);}
+.btn-save{padding:9px 20px;border-radius:8px;border:none;background:linear-gradient(135deg,var(--or),#ea580c);color:#fff;font-size:13px;font-weight:700;cursor:pointer;}
+.btn-save:hover{opacity:.9;}
+
+/* ── BUSINESS MAP ── */
+.flow-box{
+  flex:1;min-width:110px;padding:14px 10px;text-align:center;
+  background:var(--s2);border:1px solid var(--bd2);
+  position:relative;
+}
+.flow-box:first-child{border-radius:10px 0 0 10px;}
+.flow-box:last-child{border-radius:0 10px 10px 0;}
+.flow-box:not(:first-child){border-left:none;}
+.flow-box:not(:last-child)::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:var(--mu);font-size:16px;z-index:1;}
+.flow-box.hl{background:rgba(249,115,22,.05);border-color:rgba(249,115,22,.3);}
+.flow-box.hl2{background:rgba(34,197,94,.05);border-color:rgba(34,197,94,.3);}
+
+.biz-table{width:100%;border-collapse:collapse;}
+.biz-table th{background:var(--s3);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--mu);padding:12px 16px;text-align:left;border-bottom:1px solid var(--bd3);}
+.biz-table td{padding:14px 16px;font-size:12px;border-bottom:1px solid var(--bd);}
+.biz-table tr:last-child td{border-bottom:none;}
+.biz-table td:first-child{font-weight:700;font-size:13px;white-space:nowrap;}
+.biz-table td:nth-child(2){color:var(--mu2);}
+.biz-table td:nth-child(3){color:var(--mu2);}
+.biz-table tr:hover td{background:var(--s3);}
+.biz-point{display:flex;align-items:flex-start;gap:6px;margin-bottom:5px;line-height:1.4;}
+.biz-point::before{content:'›';color:var(--or);font-weight:700;flex-shrink:0;}
+.biz-point:last-child{margin-bottom:0;}
+
+.roi-card{background:var(--s3);border:1px solid var(--bd2);border-radius:8px;padding:14px 16px;}
+.roi-n{font-size:22px;font-weight:800;}
+.roi-l{font-size:11px;color:var(--mu);margin-top:3px;}
+.roi-s{font-size:11px;color:var(--mu2);margin-top:5px;}
+
+.mb4{margin-bottom:14px;}
+.mb6{margin-bottom:24px;}
+.mb8{margin-bottom:32px;}
+.mt4{margin-top:14px;}
+.mt6{margin-top:24px;}
+.flex{display:flex;}
+.aic{align-items:center;}
+.jcsb{justify-content:space-between;}
+.gap2{gap:8px;}
+.gap3{gap:12px;}
+</style>
+</head>
+<body>
+
+<!-- ── TOPBAR ── -->
+<div class="topbar">
+  <div class="flex aic gap2">
+    <div class="t-logo"><div class="dot"></div>TAD.Dev</div>
+    <div class="t-divider"></div>
+    <div class="t-proj">Roofing Agency — "R's" Media, PA</div>
+  </div>
+  <div class="t-right">
+    <button class="nav-btn active" onclick="showPage('status',this)">📍 Current State</button>
+    <button class="nav-btn" onclick="showPage('plan',this)">🗂️ Dev Plan</button>
+    <button class="nav-btn" onclick="showPage('bizmap',this)">📊 Business Map</button>
+    <div class="status-badge"><div class="pulse"></div>In Progress</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     PAGE 1 — CURRENT STATE
+════════════════════════════════ -->
+<div class="page active" id="p-status">
+
+  <div class="g4 mb6">
+    <div class="stat"><div class="stat-n" style="color:var(--ye)">0%</div><div class="stat-l">Launchpad Progress</div><div class="pb-wrap"><div class="pb"><div class="pb-f" style="width:0%"></div></div></div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--gr)">4</div><div class="stat-l">Structure Installed</div><div class="stat-s">Pipeline · Funnel · Tags · CV Slots</div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--re)">9</div><div class="stat-l">Hard Blockers</div><div class="stat-s">Nothing is live until these are done</div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--or)">27</div><div class="stat-l">Automation Tags</div><div class="stat-s">Full follow-up logic pre-loaded</div></div>
+  </div>
+
+  <div class="sh">🔀 CRM Pipeline — AI Chat Pipeline</div>
+  <div class="card mb6">
+    <div class="flex aic jcsb mb4"><span style="font-size:12px;color:var(--mu)">6 stages · 0 opportunities · Snapshot installed</span><span class="pill pg">Active</span></div>
+    <div class="pipeline">
+      <div class="ps"><span class="e">📬</span>Message Sent<br><span style="color:var(--mu);font-weight:400">No Response</span></div>
+      <div class="ps"><span class="e">💬</span>Lead<br>Responded</div>
+      <div class="ps"><span class="e">💬</span>Multiple<br>Responses</div>
+      <div class="ps"><span class="e">✅</span>Lead<br>Qualified</div>
+      <div class="ps"><span class="e">👍</span>Send To<br>Client</div>
+      <div class="ps"><span class="e">⛔</span>DND</div>
+    </div>
+  </div>
+
+  <div class="sh">🔧 Setup Status</div>
+  <div class="g2 mb6">
+    <div>
+      <div style="font-size:11px;font-weight:700;color:var(--gr);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">✅ Installed</div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <div class="sr"><span class="ico">🔀</span><span class="lbl">AI Chat Pipeline (6 stages)</span><span class="pill pg">Done</span></div>
+        <div class="sr"><span class="ico">🔻</span><span class="lbl">Roofing Leads Funnel</span><span class="pill py">1 Step Only</span></div>
+        <div class="sr"><span class="ico">🏷️</span><span class="lbl">27 Automation Tags</span><span class="pill pg">Done</span></div>
+        <div class="sr"><span class="ico">⚙️</span><span class="lbl">11 Custom Value Placeholders</span><span class="pill pr">All Empty</span></div>
+        <div class="sr"><span class="ico">👥</span><span class="lbl">2 Users (Neel P. + Jon M.)</span><span class="pill pg">Done</span></div>
+        <div class="sr"><span class="ico">📋</span><span class="lbl">5 Example Contacts</span><span class="pill py">Sample Only</span></div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:11px;font-weight:700;color:var(--re);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">❌ Missing — Nothing Works Without These</div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <div class="sr" style="border-color:rgba(239,68,68,.25)"><span class="ico">📝</span><span class="lbl">A2P 10DLC Registration</span><span class="det">Takes 2–4 weeks — must start TODAY</span><span class="pill pr">Critical</span></div>
+        <div class="sr" style="border-color:rgba(239,68,68,.25)"><span class="ico">📞</span><span class="lbl">Phone Number</span><span class="det">No SMS / calls possible</span><span class="pill pr">Critical</span></div>
+        <div class="sr" style="border-color:rgba(239,68,68,.25)"><span class="ico">📧</span><span class="lbl">Email Service (SMTP)</span><span class="det">No email automation</span><span class="pill pr">Critical</span></div>
+        <div class="sr" style="border-color:rgba(239,68,68,.25)"><span class="ico">⚡</span><span class="lbl">Automation Workflows</span><span class="det">Zero workflows built</span><span class="pill pr">Critical</span></div>
+        <div class="sr" style="border-color:rgba(239,68,68,.25)"><span class="ico">📅</span><span class="lbl">Booking Calendar</span><span class="det">Calendar link custom value = empty</span><span class="pill pr">Critical</span></div>
+        <div class="sr" style="border-color:rgba(234,179,8,.25)"><span class="ico">📘</span><span class="lbl">Facebook Integration</span><span class="det">fb lead tag orphaned</span><span class="pill py">High</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sh">⚙️ Custom Values — Fill These First</div>
+  <div class="card mb6">
+    <table class="cv-t">
+      <tr><td>Business Name</td><td>{{custom_values.business_name}}</td><td><span class="pill pr">Empty</span></td></tr>
+      <tr><td>Business Owner</td><td>{{custom_values.business_owner}}</td><td><span class="pill pr">Empty</span></td></tr>
+      <tr><td>Calendar Link</td><td>{{custom_values.calendar_link}}</td><td><span class="pill pr">Empty</span></td></tr>
+      <tr><td>From Email Address</td><td>{{custom_values.from_email_address}}</td><td><span class="pill pr">Empty</span></td></tr>
+      <tr><td>Notification Email</td><td>{{custom_values.notification_email}}</td><td><span class="pill pr">Empty</span></td></tr>
+      <tr><td>Email Name</td><td>{{custom_values.email_name}}</td><td><span class="pill pr">Empty</span></td></tr>
+      <tr><td>First Outgoing SMS</td><td>{{custom_values.first_outgoing_sms_message}}</td><td><span class="pill pr">Empty</span></td></tr>
+      <tr><td>Bump SMS 1</td><td>{{custom_values.bump_sms_1}}</td><td><span class="pill pr">Empty</span></td></tr>
+      <tr><td>Bump SMS 2</td><td>{{custom_values.bump_sms_2}}</td><td><span class="pill pr">Empty</span></td></tr>
+      <tr><td>Bump SMS 3</td><td>{{custom_values.bump_sms_3}}</td><td><span class="pill pr">Empty</span></td></tr>
+      <tr><td>Webhook (Prince Charming)</td><td>{{custom_values.webhook_prince_charming...}}</td><td><span class="pill pr">Empty</span></td></tr>
+    </table>
+  </div>
+
+  <div class="sh">🏷️ 27 Tags — Full System Pre-Loaded</div>
+  <div class="card">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+      <div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--or);margin-bottom:8px">AI Control</div><div class="tc"><span class="tg o">ai stop</span><span class="tg o">reply generating</span><span class="tg o">manual takeover</span></div></div>
+      <div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--bl);margin-bottom:8px">Bump Follow-ups</div><div class="tc"><span class="tg b">first message</span><span class="tg b">second message</span><span class="tg b">bump 1.1</span><span class="tg b">bump 2.1</span><span class="tg b">bump 3</span><span class="tg b">bump response</span><span class="tg b">bump 1 reply</span><span class="tg b">bump 2 reply</span><span class="tg b">no bump</span></div></div>
+      <div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gr);margin-bottom:8px">Lead Stages</div><div class="tc"><span class="tg g">lead</span><span class="tg g">warm lead</span><span class="tg g">qualify</span><span class="tg g">responded</span><span class="tg g">multiple messages</span><span class="tg g">appointment booked</span><span class="tg g">schedule</span><span class="tg g">follow-up</span></div></div>
+      <div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--pu);margin-bottom:8px">System</div><div class="tc"><span class="tg p">fb lead</span><span class="tg p">dnd</span><span class="tg p">goodbye</span><span class="tg p">no response</span><span class="tg p">high priority</span><span class="tg p">dbr android</span><span class="tg p">sleeping beauty android optin</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     PAGE 2 — DEV PLAN (KANBAN)
+════════════════════════════════ -->
+<div class="page" id="p-plan">
+
+  <div class="board-toolbar">
+    <button class="phase-btn active" onclick="filterPhase('all',this)">All Tasks</button>
+    <button class="phase-btn" onclick="filterPhase('1',this)">🔥 Phase 1 — Foundation</button>
+    <button class="phase-btn" onclick="filterPhase('2',this)">⚡ Phase 2 — Go Live</button>
+    <button class="phase-btn" onclick="filterPhase('3',this)">🚀 Phase 3 — Scale</button>
+    <button class="phase-btn" onclick="filterPhase('4',this)">🎯 Phase 4 — Optimize</button>
+    <button class="add-ticket-btn" onclick="openModal()">+ Add Ticket</button>
+  </div>
+
+  <div class="phase-bars mb6">
+    <div class="card-sm"><div style="font-size:12px;font-weight:700;margin-bottom:8px">🔥 Phase 1 — Foundation</div><div class="pb-wrap"><div class="pb-lbl"><span id="p1-lbl">0 / 7 tasks</span><span id="p1-pct" style="color:var(--re)">0%</span></div><div class="pb"><div class="pb-f" id="pb1" style="width:0%"></div></div></div></div>
+    <div class="card-sm"><div style="font-size:12px;font-weight:700;margin-bottom:8px">⚡ Phase 2 — Go Live</div><div class="pb-wrap"><div class="pb-lbl"><span id="p2-lbl">0 / 6 tasks</span><span id="p2-pct" style="color:var(--mu)">Locked</span></div><div class="pb"><div class="pb-f blue" id="pb2" style="width:0%"></div></div></div></div>
+    <div class="card-sm"><div style="font-size:12px;font-weight:700;margin-bottom:8px">🚀 Phase 3 — Scale</div><div class="pb-wrap"><div class="pb-lbl"><span id="p3-lbl">0 / 5 tasks</span><span id="p3-pct" style="color:var(--mu)">Locked</span></div><div class="pb"><div class="pb-f green" id="pb3" style="width:0%"></div></div></div></div>
+  </div>
+
+  <div class="board">
+    <div class="col">
+      <div class="col-hd todo"><span>📋 To Do</span><span class="pill pr" id="cnt-todo">0</span></div>
+      <div class="col-body todo" id="col-todo" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event,'todo')"></div>
+    </div>
+    <div class="col">
+      <div class="col-hd doing"><span>⚡ In Progress</span><span class="pill po" id="cnt-doing">0</span></div>
+      <div class="col-body doing" id="col-doing" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event,'doing')"></div>
+    </div>
+    <div class="col">
+      <div class="col-hd done"><span>✅ Done</span><span class="pill pg" id="cnt-done">0</span></div>
+      <div class="col-body done" id="col-done" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event,'done')"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     PAGE 3 — BUSINESS MAP
+════════════════════════════════ -->
+<div class="page" id="p-bizmap">
+
+  <div class="sh">🔄 Realistic Lead Journey for a Roofing Business</div>
+  <div style="display:flex;overflow-x:auto;margin-bottom:32px;gap:0">
+    <div class="flow-box hl"><div style="font-size:24px;margin-bottom:6px">📢</div><div style="font-size:12px;font-weight:700;margin-bottom:4px">Lead Source</div><div style="font-size:10px;color:var(--mu)">FB Ads · Google · Door-to-door · Storm chase · Referral</div></div>
+    <div class="flow-box"><div style="font-size:24px;margin-bottom:6px">📋</div><div style="font-size:12px;font-weight:700;margin-bottom:4px">Opt-In Form</div><div style="font-size:10px;color:var(--mu)">Name · Phone · Address · Roof type · Issue</div></div>
+    <div class="flow-box hl"><div style="font-size:24px;margin-bottom:6px">🤖</div><div style="font-size:12px;font-weight:700;margin-bottom:4px">AI Responds</div><div style="font-size:10px;color:var(--mu)">&lt;60s SMS · Qualifies · Books inspection</div></div>
+    <div class="flow-box"><div style="font-size:24px;margin-bottom:6px">🔄</div><div style="font-size:12px;font-weight:700;margin-bottom:4px">3-Bump Sequence</div><div style="font-size:10px;color:var(--mu)">Day 1 · Day 3 · Day 7 if no reply</div></div>
+    <div class="flow-box"><div style="font-size:24px;margin-bottom:6px">📅</div><div style="font-size:12px;font-weight:700;margin-bottom:4px">Inspection Booked</div><div style="font-size:10px;color:var(--mu)">Confirm · 24hr · 1hr reminders</div></div>
+    <div class="flow-box"><div style="font-size:24px;margin-bottom:6px">🔨</div><div style="font-size:12px;font-weight:700;margin-bottom:4px">Estimate Sent</div><div style="font-size:10px;color:var(--mu)">Follow-up if not signed within 48hrs</div></div>
+    <div class="flow-box hl2"><div style="font-size:24px;margin-bottom:6px">💰</div><div style="font-size:12px;font-weight:700;margin-bottom:4px">Job Won</div><div style="font-size:10px;color:var(--mu)">Invoice · Review ask · Referral ask</div></div>
+  </div>
+
+  <div class="sh">📊 Automation → Realistic Business Outcome</div>
+  <div class="card mb8">
+    <div style="border:1px solid var(--bd2);border-radius:8px;overflow:hidden;">
+      <table class="biz-table" style="width:100%">
+        <thead><tr><th style="width:180px">Module</th><th>What It Does</th><th>Realistic Business Impact</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>🤖 AI First Response</td>
+            <td>
+              <div class="biz-point">Texts every new lead in under 60 seconds</div>
+              <div class="biz-point">Asks: roof type, issue, property address</div>
+              <div class="biz-point">Books inspection if lead is ready</div>
+            </td>
+            <td>
+              <div class="biz-point">80% of roofing leads go with the first company to respond — this wins that race</div>
+              <div class="biz-point">Replaces the owner answering texts at 10pm</div>
+              <div class="biz-point">Works on weekends during storm season</div>
+            </td>
+          </tr>
+          <tr>
+            <td>📝 A2P 10DLC Registration</td>
+            <td>
+              <div class="biz-point">Registers business as a legitimate SMS sender with carriers</div>
+              <div class="biz-point">Takes 2–4 weeks to approve</div>
+              <div class="biz-point">Required before ANY business SMS automation can run</div>
+            </td>
+            <td>
+              <div class="biz-point">Without it: SMS gets flagged as spam and blocked</div>
+              <div class="biz-point">With it: deliverability stays above 95%</div>
+              <div class="biz-point">Most roofing competitors skip this — they get filtered</div>
+            </td>
+          </tr>
+          <tr>
+            <td>🔄 3-Bump Follow-up</td>
+            <td>
+              <div class="biz-point">Sends 3 spaced SMS if lead doesn't respond</div>
+              <div class="biz-point">Day 1: check-in · Day 3: value offer · Day 7: breakup text</div>
+              <div class="biz-point">Stops immediately on any reply</div>
+            </td>
+            <td>
+              <div class="biz-point">Recovers 20–30% of "dead" leads that just needed a nudge</div>
+              <div class="biz-point">Owner team does zero manual follow-up</div>
+              <div class="biz-point">Consistent regardless of how busy the crew is</div>
+            </td>
+          </tr>
+          <tr>
+            <td>📅 Appointment Reminders</td>
+            <td>
+              <div class="biz-point">Booking confirmation SMS + email instantly</div>
+              <div class="biz-point">24-hour reminder with date/time</div>
+              <div class="biz-point">1-hour reminder with exact address</div>
+            </td>
+            <td>
+              <div class="biz-point">Roofing no-show rate drops from ~30% to under 10%</div>
+              <div class="biz-point">Each saved inspection = potential $8k–$25k job</div>
+              <div class="biz-point">Professional — builds trust before arriving</div>
+            </td>
+          </tr>
+          <tr>
+            <td>🔨 Estimate Follow-up</td>
+            <td>
+              <div class="biz-point">Detects when estimate is sent but not signed</div>
+              <div class="biz-point">Triggers follow-up after 48hrs and 5 days</div>
+              <div class="biz-point">Handles common objections in follow-up messages</div>
+            </td>
+            <td>
+              <div class="biz-point">Closes 15–25% of estimates that would have gone cold</div>
+              <div class="biz-point">Most roofing jobs are lost in the estimate stage — this fixes it</div>
+            </td>
+          </tr>
+          <tr>
+            <td>⭐ Review Automation</td>
+            <td>
+              <div class="biz-point">Post-job SMS asking for Google review</div>
+              <div class="biz-point">AI responds to every review within minutes</div>
+              <div class="biz-point">Alerts owner to negatives before damage spreads</div>
+            </td>
+            <td>
+              <div class="biz-point">Google ranking directly tied to review count and recency</div>
+              <div class="biz-point">Higher ranking = more free inbound calls every month</div>
+              <div class="biz-point">Each 10 new reviews ≈ 5–15% more organic leads</div>
+            </td>
+          </tr>
+          <tr>
+            <td>🌩️ Storm Campaign</td>
+            <td>
+              <div class="biz-point">Weather trigger workflow fires after hail/wind events</div>
+              <div class="biz-point">Blasts SMS to contacts in affected zip codes</div>
+              <div class="biz-point">Drives traffic to free inspection funnel</div>
+            </td>
+            <td>
+              <div class="biz-point">Storm season = biggest revenue window for roofing</div>
+              <div class="biz-point">First company to reach storm-hit homeowners wins the job</div>
+              <div class="biz-point">One good storm campaign can fill a crew for 3 months</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sh">💰 Realistic ROI Estimates — When Fully Built</div>
+  <div class="g4 mb8">
+    <div class="roi-card"><div class="roi-n" style="color:var(--or)">&lt;60s</div><div class="roi-l">Lead Response Time</div><div class="roi-s">vs industry avg of 34 min</div></div>
+    <div class="roi-card"><div class="roi-n" style="color:var(--gr)">+20–30%</div><div class="roi-l">More Closed Jobs</div><div class="roi-s">From recovered cold leads</div></div>
+    <div class="roi-card"><div class="roi-n" style="color:var(--bl)">~$8–25k</div><div class="roi-l">Per Recovered No-Show</div><div class="roi-s">Average roofing job value</div></div>
+    <div class="roi-card"><div class="roi-n" style="color:var(--pu)">20+ hrs/wk</div><div class="roi-l">Saved — Owner's Time</div><div class="roi-s">Zero manual follow-up needed</div></div>
+  </div>
+
+  <div class="sh">⚠️ Realistic Risks & Things To Know</div>
+  <div class="g2">
+    <div class="card">
+      <div style="font-size:14px;font-weight:700;margin-bottom:12px;color:var(--re)">🚨 Things That Will Break If Skipped</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:var(--mu2)">
+        <div class="biz-point">A2P 10DLC not registered = SMS blocked by carriers. Start this <strong style="color:var(--re)">immediately</strong> — it takes weeks</div>
+        <div class="biz-point">Custom values left empty = automation sends broken/blank messages to real leads</div>
+        <div class="biz-point">No phone number = none of the SMS automation works at all</div>
+        <div class="biz-point">AI agent not trained on real services = gives wrong answers, damages trust</div>
+        <div class="biz-point">No calendar linked = AI can't book inspections, defeats the whole system</div>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-size:14px;font-weight:700;margin-bottom:12px;color:var(--ye)">📋 Realistic Timeline to Live</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:var(--mu2)">
+        <div class="biz-point"><strong style="color:var(--tx)">Week 1:</strong> A2P filed · phone bought · email set up · custom values filled · calendar built</div>
+        <div class="biz-point"><strong style="color:var(--tx)">Week 2:</strong> Core workflows live · funnel built · first test lead run</div>
+        <div class="biz-point"><strong style="color:var(--tx)">Week 3:</strong> Facebook connected · AI agent trained · pipeline automation on</div>
+        <div class="biz-point"><strong style="color:var(--tx)">Week 4:</strong> End-to-end QA · team trained · go live with real leads</div>
+        <div class="biz-point"><strong style="color:var(--tx)">Month 2+:</strong> Reviews · storm campaigns · estimate follow-up · reporting</div>
+        <div class="biz-point"><strong style="color:var(--ye)">Note:</strong> A2P approval time (2–4 weeks) is the main wildcard — don't let it be a surprise</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── ADD TICKET MODAL ── -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <h3 id="modal-title">➕ Add New Ticket</h3>
+    <input type="hidden" id="edit-id"/>
+    <div class="form-row">
+      <label class="form-label">Title *</label>
+      <input class="form-input" id="f-title" placeholder="e.g. Set up Google Business Profile"/>
+    </div>
+    <div class="form-row">
+      <label class="form-label">Description</label>
+      <textarea class="form-textarea" id="f-desc" placeholder="What needs to be done and why it matters..."></textarea>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="form-row">
+        <label class="form-label">Phase</label>
+        <select class="form-select" id="f-phase">
+          <option value="1">🔥 Phase 1 — Foundation</option>
+          <option value="2">⚡ Phase 2 — Go Live</option>
+          <option value="3">🚀 Phase 3 — Scale</option>
+          <option value="4">🎯 Phase 4 — Optimize</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Priority</label>
+        <select class="form-select" id="f-priority">
+          <option value="crit">🔴 Critical</option>
+          <option value="high">🟠 High</option>
+          <option value="med">🟡 Medium</option>
+          <option value="low">🔵 Low</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <label class="form-label">Tags (comma separated)</label>
+      <input class="form-input" id="f-tags" placeholder="e.g. Integration, Facebook, Leads"/>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-save" onclick="saveTicket()">Save Ticket</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════
+//  DATA — Realistic Roofing Tasks
+// ═══════════════════════════════
+var TASKS = [
+  // PHASE 1 — Foundation
+  {id:'t1',phase:'1',status:'todo',priority:'crit',title:'Submit A2P 10DLC Registration',desc:'URGENT: Register the business as a legitimate SMS sender with carriers via GHL. Takes 2–4 weeks to approve. Without this, all business SMS automation will be filtered or blocked. Start this before anything else.',tags:['A2P','Compliance','SMS']},
+  {id:'t2',phase:'1',status:'todo',priority:'crit',title:'Fill All 11 Custom Values',desc:'Business name, owner name, from email, notification email, calendar link, first outgoing SMS, and all 3 bump messages. Every automation template pulls from these — leaving them empty breaks every message sent.',tags:['Custom Values','Configuration']},
+  {id:'t3',phase:'1',status:'todo',priority:'crit',title:'Buy / Port Dedicated Phone Number',desc:'Purchase a local area code number via GHL LC Phone (after A2P is filed). This number will be the business\'s dedicated SMS and call line. Port existing number if the business already has one.',tags:['Phone','SMS']},
+  {id:'t4',phase:'1',status:'todo',priority:'crit',title:'Set Up Email Service',desc:'Configure LC Email (built-in) or connect custom SMTP (e.g. Google Workspace for the roofing business). Required for all email notifications, confirmations, and automations.',tags:['Email','SMTP']},
+  {id:'t5',phase:'1',status:'todo',priority:'crit',title:'Create Roof Inspection Booking Calendar',desc:'Build a calendar in GHL specifically for Roof Inspections. Set availability, buffer time between appointments, and max daily bookings. Copy the booking link into the calendar_link custom value.',tags:['Calendar','Booking']},
+  {id:'t6',phase:'1',status:'todo',priority:'high',title:'Verify Google Business Profile',desc:'Claim and verify the roofing business on Google Business Profile. Add photos, services, hours. This is the foundation for Google reviews automation and local SEO ranking.',tags:['Google','Local SEO','Reviews']},
+  {id:'t7',phase:'1',status:'todo',priority:'high',title:'Connect Facebook Business Page',desc:'Link the roofing company\'s Facebook page to GHL. Enables: (1) FB lead ad sync, (2) Messenger inbox in conversations, (3) fb lead tag triggers. Without this, the fb lead tag does nothing.',tags:['Facebook','Integration']},
+
+  // PHASE 2 — Go Live
+  {id:'t8',phase:'2',status:'todo',priority:'crit',title:'Build: New Lead → Instant AI Reply Workflow',desc:'Core workflow: trigger on new contact/form submission → send First Outgoing SMS within 60 seconds → tag "first message" → add to AI Chat Pipeline at stage 1. This is the beating heart of the system.',tags:['Workflow','AI','Core']},
+  {id:'t9',phase:'2',status:'todo',priority:'crit',title:'Build: 3-Bump Follow-up Sequence',desc:'Workflow: if no reply after 24hrs → send Bump SMS 1 + tag bump 1.1. If still no reply after 3 days → Bump SMS 2 + tag bump 2.1. After 7 days → Bump SMS 3 + tag bump 3. Any reply at any point stops the sequence.',tags:['Workflow','Follow-up','SMS']},
+  {id:'t10',phase:'2',status:'todo',priority:'crit',title:'Expand Roofing Leads Funnel (Multi-Step)',desc:'Current funnel has only 1 step. Build out: Step 1 = Hero + "Get Free Inspection" CTA, Step 2 = Form (name, phone, address, roof type, issue description), Step 3 = Thank You + calendar booking widget.',tags:['Funnel','Lead Capture']},
+  {id:'t11',phase:'2',status:'todo',priority:'high',title:'Configure AI Conversation Agent',desc:'Set up a Sales AI Agent trained on: roofing services offered, average pricing, service area zip codes, inspection process, insurance claim process, timeline. Goal: qualify leads and book inspections 24/7.',tags:['AI Agent','Configuration']},
+  {id:'t12',phase:'2',status:'todo',priority:'high',title:'Build: Appointment Reminder Workflow',desc:'Trigger on calendar booking → send confirmation SMS + email. Send 24hr reminder SMS. Send 1hr reminder with exact address. If no-show is detected → send "sorry we missed you, want to reschedule?" message.',tags:['Workflow','Calendar','Reminders']},
+  {id:'t13',phase:'2',status:'todo',priority:'high',title:'Full End-to-End Test with Fake Lead',desc:'Submit a test lead through the funnel → verify AI responds within 60s → manually trigger no-response → confirm bump sequence fires → book a test appointment → verify confirmations send → check pipeline stage moves.',tags:['QA','Testing']},
+
+  // PHASE 3 — Scale
+  {id:'t14',phase:'3',status:'todo',priority:'high',title:'Build: Estimate Follow-up Workflow',desc:'After inspection: trigger on opportunity moving to estimate stage → wait 48hrs → if not marked "won", send follow-up SMS offering to answer questions. Wait 5 more days → send final follow-up. Closes 15–25% of cold estimates.',tags:['Workflow','Sales','Estimate']},
+  {id:'t15',phase:'3',status:'todo',priority:'high',title:'Build: Post-Job Review Request',desc:'When opportunity is marked Won/Completed → wait 2 days → send SMS asking for Google review with direct link. AI auto-responds to all incoming Google reviews. Alert owner via email on any 1-2 star review.',tags:['Reviews','Reputation','Automation']},
+  {id:'t16',phase:'3',status:'todo',priority:'med',title:'Build: Storm Season Campaign Template',desc:'Create a broadcast SMS template for after major hail/wind events in service area. Build a targeted list workflow to segment contacts by zip code. Set up a "Free Storm Damage Inspection" funnel variant.',tags:['Campaign','Storm','Revenue']},
+  {id:'t17',phase:'3',status:'todo',priority:'med',title:'Build: Re-engagement for Cold Leads',desc:'Contacts tagged "no response" or "dnd" after 30 days get a new angle — a different offer (seasonal discount, free gutter check). Second attempt at 60 days with "final goodbye" message.',tags:['Workflow','Re-engagement']},
+  {id:'t18',phase:'3',status:'todo',priority:'med',title:'Set Up Reporting Dashboard',desc:'Configure GHL reporting to track: lead source breakdown (FB vs Google vs referral), pipeline conversion rate by stage, appointment show rate, AI response time, job close rate, revenue in pipeline.',tags:['Reporting','Analytics']},
+
+  // PHASE 4 — Optimize
+  {id:'t19',phase:'4',status:'todo',priority:'med',title:'Build: Referral Ask Automation',desc:'30 days after a completed job → automated SMS asking for referrals with a simple incentive offer. Create a referral tracking tag and pipeline stage.',tags:['Referral','Growth']},
+  {id:'t20',phase:'4',status:'todo',priority:'med',title:'Connect Google Ads — Lead Form Sync',desc:'Link Google Ads account to pull leads directly from Google Lead Form extensions into GHL CRM and trigger the same instant-reply workflow.',tags:['Google Ads','Integration']},
+  {id:'t21',phase:'4',status:'todo',priority:'low',title:'Set Up Payments — Deposit Collection',desc:'Connect Stripe via GHL Payments. Create an automated invoice for inspection deposits. Add payment link to the booking confirmation workflow.',tags:['Payments','Stripe','Revenue']},
+  {id:'t22',phase:'4',status:'todo',priority:'low',title:'Configure WhatsApp Channel',desc:'Optional: add WhatsApp as a secondary outreach channel for leads who don\'t respond to SMS. Particularly useful for bilingual/Spanish-speaking markets in the service area.',tags:['WhatsApp','Channel']},
+];
+
+var currentPhase = 'all';
+var draggedId = null;
+var PRIORITY_ORDER = {crit:0,high:1,med:2,low:3};
+
+function pLabel(p){return {crit:'🔴 Critical',high:'🟠 High',med:'🟡 Medium',low:'🔵 Low'}[p];}
+function pPill(p){var m={crit:'pr',high:'po',med:'py',low:'pc'};return '<span class="pill '+m[p]+'">'+pLabel(p)+'</span>';}
+function phaseLabel(p){return {1:'Phase 1',2:'Phase 2',3:'Phase 3',4:'Phase 4'}[p]||'Phase '+p;}
+
+function saveToStorage(){
+  try{localStorage.setItem('rab_tasks',JSON.stringify(TASKS));}catch(e){}
+}
+function loadFromStorage(){
+  try{
+    var d=localStorage.getItem('rab_tasks');
+    if(d){var t=JSON.parse(d);if(Array.isArray(t)&&t.length)TASKS=t;}
+  }catch(e){}
+}
+
+function getFiltered(){
+  return currentPhase==='all'?TASKS:TASKS.filter(function(t){return t.phase===currentPhase;});
+}
+
+function renderBoard(){
+  var f=getFiltered();
+  var todo  = f.filter(function(t){return t.status==='todo'; }).sort(function(a,b){return PRIORITY_ORDER[a.priority]-PRIORITY_ORDER[b.priority];});
+  var doing = f.filter(function(t){return t.status==='doing';}).sort(function(a,b){return PRIORITY_ORDER[a.priority]-PRIORITY_ORDER[b.priority];});
+  var done  = f.filter(function(t){return t.status==='done'; });
+
+  document.getElementById('cnt-todo').textContent  = todo.length;
+  document.getElementById('cnt-doing').textContent = doing.length;
+  document.getElementById('cnt-done').textContent  = done.length;
+
+  ['todo','doing','done'].forEach(function(col){
+    var arr=col==='todo'?todo:col==='doing'?doing:done;
+    var el=document.getElementById('col-'+col);
+    if(!arr.length){el.innerHTML='<div class="col-empty">No tasks</div>';return;}
+    el.innerHTML=arr.map(taskHTML).join('');
+    // attach drag listeners
+    el.querySelectorAll('.task').forEach(function(card){
+      card.addEventListener('dragstart',function(e){
+        draggedId=this.dataset.id;
+        setTimeout(function(){document.querySelector('.task[data-id="'+draggedId+'"]') && document.querySelector('.task[data-id="'+draggedId+'"]').classList.add('dragging');},0);
+      });
+      card.addEventListener('dragend',function(){
+        this.classList.remove('dragging');
+        document.querySelectorAll('.col-body').forEach(function(c){c.classList.remove('drag-over');});
+      });
+    });
+  });
+
+  updateProgress();
+}
+
+function taskHTML(t){
+  var tags = (t.tags||[]).map(function(g){return '<span class="task-tag">'+g+'</span>';}).join('');
+  var moveBack = t.status!=='todo'?'<button class="ta-btn" onclick="moveTask(\''+t.id+'\',\'back\')" title="Move back">← Back</button>':'';
+  var moveNext = t.status!=='done'?'<button class="ta-btn primary" onclick="moveTask(\''+t.id+'\',\'next\')">'+( t.status==='todo'?'▶ Start':'✓ Done')+'</button>':'<button class="ta-btn" onclick="moveTask(\''+t.id+'\',\'reopen\')">↩ Reopen</button>';
+  return '<div class="task priority-'+t.priority+'" data-id="'+t.id+'" draggable="true">'
+    +'<div class="task-top"><span class="task-title">'+t.title+'</span>'+pPill(t.priority)+'</div>'
+    +'<div class="task-desc">'+t.desc+'</div>'
+    +'<div class="task-footer"><span class="task-ph-tag">'+phaseLabel(t.phase)+'</span>'+tags+'</div>'
+    +'<div class="task-actions">'+moveBack+moveNext+'<button class="ta-btn danger" onclick="deleteTask(\''+t.id+'\')">🗑</button><button class="ta-btn" onclick="editTask(\''+t.id+'\')">✏️</button></div>'
+    +'</div>';
+}
+
+function moveTask(id,dir){
+  var t=TASKS.find(function(x){return x.id===id;});
+  if(!t)return;
+  if(dir==='next'){t.status=t.status==='todo'?'doing':'done';}
+  else if(dir==='back'){t.status=t.status==='done'?'doing':'todo';}
+  else if(dir==='reopen'){t.status='todo';}
+  saveToStorage();renderBoard();
+}
+
+function deleteTask(id){
+  if(!confirm('Delete this ticket?'))return;
+  TASKS=TASKS.filter(function(t){return t.id!==id;});
+  saveToStorage();renderBoard();
+}
+
+function editTask(id){
+  var t=TASKS.find(function(x){return x.id===id;});
+  if(!t)return;
+  document.getElementById('edit-id').value=t.id;
+  document.getElementById('f-title').value=t.title;
+  document.getElementById('f-desc').value=t.desc;
+  document.getElementById('f-phase').value=t.phase;
+  document.getElementById('f-priority').value=t.priority;
+  document.getElementById('f-tags').value=(t.tags||[]).join(', ');
+  document.getElementById('modal-title').textContent='✏️ Edit Ticket';
+  document.getElementById('modal').classList.add('open');
+}
+
+// Drag & drop handlers
+function onDragOver(e){
+  e.preventDefault();
+  e.currentTarget.classList.add('drag-over');
+}
+function onDragLeave(e){
+  e.currentTarget.classList.remove('drag-over');
+}
+function onDrop(e,newStatus){
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  if(!draggedId)return;
+  var t=TASKS.find(function(x){return x.id===draggedId;});
+  if(t){t.status=newStatus;saveToStorage();renderBoard();}
+  draggedId=null;
+}
+
+function updateProgress(){
+  [1,2,3].forEach(function(ph){
+    var all=TASKS.filter(function(t){return t.phase===String(ph);});
+    var done=all.filter(function(t){return t.status==='done';}).length;
+    var pct=all.length?Math.round(done/all.length*100):0;
+    var el=document.getElementById('pb'+ph);
+    if(el)el.style.width=pct+'%';
+    var lbl=document.getElementById('p'+ph+'-lbl');
+    if(lbl)lbl.textContent=done+' / '+all.length+' tasks';
+    var pctEl=document.getElementById('p'+ph+'-pct');
+    if(pctEl){pctEl.textContent=pct+'%';pctEl.style.color=pct===0?'var(--mu)':pct===100?'var(--gr)':'var(--or)';}
+  });
+}
+
+function filterPhase(p,btn){
+  currentPhase=p;
+  document.querySelectorAll('#p-plan .phase-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  renderBoard();
+}
+
+// Modal
+function openModal(){
+  document.getElementById('edit-id').value='';
+  document.getElementById('f-title').value='';
+  document.getElementById('f-desc').value='';
+  document.getElementById('f-phase').value='1';
+  document.getElementById('f-priority').value='high';
+  document.getElementById('f-tags').value='';
+  document.getElementById('modal-title').textContent='➕ Add New Ticket';
+  document.getElementById('modal').classList.add('open');
+  setTimeout(function(){document.getElementById('f-title').focus();},100);
+}
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+}
+document.getElementById('modal').addEventListener('click',function(e){
+  if(e.target===this)closeModal();
+});
+
+function saveTicket(){
+  var title=document.getElementById('f-title').value.trim();
+  if(!title){alert('Title is required');return;}
+  var editId=document.getElementById('edit-id').value;
+  var tags=document.getElementById('f-tags').value.split(',').map(function(s){return s.trim();}).filter(Boolean);
+  if(editId){
+    var t=TASKS.find(function(x){return x.id===editId;});
+    if(t){t.title=title;t.desc=document.getElementById('f-desc').value.trim();t.phase=document.getElementById('f-phase').value;t.priority=document.getElementById('f-priority').value;t.tags=tags;}
+  }else{
+    TASKS.push({
+      id:'t'+Date.now(),
+      phase:document.getElementById('f-phase').value,
+      status:'todo',
+      priority:document.getElementById('f-priority').value,
+      title:title,
+      desc:document.getElementById('f-desc').value.trim(),
+      tags:tags
+    });
+  }
+  closeModal();saveToStorage();renderBoard();
+}
+
+// Page switching
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});
+  document.getElementById('p-'+id).classList.add('active');
+  if(btn)btn.classList.add('active');
+}
+
+// Init
+loadFromStorage();
+renderBoard();
+</script>
+</body>
+</html>
