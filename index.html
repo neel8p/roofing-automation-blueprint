@@ -308,6 +308,73 @@ button{font-family:inherit;}
 .fn-mini-wrap-arrow{display:flex;align-items:center;color:var(--mu);padding:0 2px;font-size:14px;flex-shrink:0;}
 
 @media(max-width:600px){.fd-split{grid-template-columns:1fr;}.fn-badge{display:none;}}
+
+/* ══ PUZZLE / ARCHITECTURE STYLES ══ */
+.layer-block{margin-bottom:28px;}
+.layer-hd{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.layer-num{width:22px;height:22px;border-radius:50%;background:var(--s4);border:1px solid var(--bd3);font-size:11px;font-weight:800;color:var(--mu2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.layer-title{font-size:12px;font-weight:700;color:var(--tx);}
+.layer-subtitle{font-size:11px;color:var(--mu);}
+.layer-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;}
+
+.pc{border-radius:10px;padding:14px;border:1px solid var(--bd2);background:var(--s2);display:flex;flex-direction:column;gap:5px;}
+.pc.active{border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.025);}
+.pc.partial{border-color:rgba(234,179,8,.35);background:rgba(234,179,8,.025);}
+.pc.orphaned{border-color:rgba(249,115,22,.35);background:rgba(249,115,22,.03);}
+.pc.broken{border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.025);}
+.pc.missing{border-color:var(--bd);background:var(--s1);opacity:.72;}
+.pc-badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;}
+.pc.active .pc-badge{color:var(--gr);}
+.pc.partial .pc-badge{color:var(--ye);}
+.pc.orphaned .pc-badge{color:var(--or);}
+.pc.broken .pc-badge{color:var(--re);}
+.pc.missing .pc-badge{color:var(--mu);}
+.pc-ico{font-size:20px;}
+.pc-title{font-size:13px;font-weight:700;line-height:1.2;}
+.pc-desc{font-size:11px;color:var(--mu);line-height:1.5;}
+.pc-fix{font-size:11px;font-weight:600;padding:5px 9px;border-radius:6px;margin-top:2px;}
+.pc.active .pc-fix{background:rgba(34,197,94,.08);color:var(--gr);}
+.pc.partial .pc-fix{background:rgba(234,179,8,.08);color:var(--ye);}
+.pc.orphaned .pc-fix{background:rgba(249,115,22,.08);color:var(--or);}
+.pc.broken .pc-fix{background:rgba(239,68,68,.09);color:var(--re);}
+.pc.missing .pc-fix{background:var(--s3);color:var(--mu);}
+
+/* Architecture strip */
+.arch-strip{display:flex;overflow-x:auto;gap:0;margin-bottom:6px;}
+.ab{flex:1;min-width:120px;padding:12px 10px;background:var(--s2);border:1px solid var(--bd2);text-align:center;position:relative;}
+.ab:first-child{border-radius:10px 0 0 10px;}
+.ab:last-child{border-radius:0 10px 10px 0;}
+.ab:not(:last-child){border-right:none;}
+.ab:not(:last-child)::after{content:'→';position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--or);font-size:14px;font-weight:700;z-index:2;background:var(--bg);padding:0 3px;}
+.ab.ok{background:rgba(34,197,94,.04);border-color:rgba(34,197,94,.25);}
+.ab.warn{background:rgba(249,115,22,.04);border-color:rgba(249,115,22,.25);}
+.ab.err{background:rgba(239,68,68,.04);border-color:rgba(239,68,68,.25);}
+.ab-lyr{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin-bottom:4px;}
+.ab-ico{font-size:18px;margin-bottom:3px;}
+.ab-name{font-size:11px;font-weight:700;margin-bottom:2px;}
+.ab-sub{font-size:10px;color:var(--mu);line-height:1.3;}
+.ab-tag{font-size:10px;padding:2px 7px;border-radius:4px;margin-top:5px;font-weight:600;display:inline-block;}
+.ab-tag.ok{background:rgba(34,197,94,.1);color:var(--gr);}
+.ab-tag.err{background:rgba(239,68,68,.1);color:var(--re);}
+.ab-tag.warn{background:rgba(249,115,22,.1);color:var(--or);}
+.ab-tag.miss{background:var(--s4);color:var(--mu);}
+
+/* Before / After table */
+.ba-table{width:100%;border-collapse:collapse;}
+.ba-table th{padding:10px 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;border-bottom:2px solid var(--bd3);}
+.ba-table th:nth-child(1){color:var(--mu);}
+.ba-table th:nth-child(2){color:var(--re);}
+.ba-table th:nth-child(3){color:var(--gr);}
+.ba-table td{padding:11px 14px;font-size:12px;border-bottom:1px solid var(--bd);vertical-align:top;}
+.ba-table td:first-child{font-weight:700;color:var(--tx);white-space:nowrap;width:155px;}
+.ba-table td:nth-child(2){color:var(--mu);border-left:1px solid var(--bd);}
+.ba-table td:nth-child(3){color:var(--mu2);border-left:1px solid var(--bd);}
+.ba-table tr:hover td{background:var(--s3);}
+.ba-x{display:flex;align-items:flex-start;gap:5px;margin-bottom:3px;line-height:1.4;}
+.ba-x::before{content:'✗';color:var(--re);flex-shrink:0;font-weight:700;}
+.ba-c{display:flex;align-items:flex-start;gap:5px;margin-bottom:3px;line-height:1.4;}
+.ba-c::before{content:'✓';color:var(--gr);flex-shrink:0;font-weight:700;}
+@media(max-width:700px){.ba-table th:nth-child(3),.ba-table td:nth-child(3){display:none;}}
 </style>
 </head>
 <body>
@@ -329,82 +396,292 @@ button{font-family:inherit;}
 </div>
 
 <!-- ════════════════════════════════
-     PAGE 1 — CURRENT STATE
+     PAGE 1 — CURRENT STATE / ARCHITECTURE
 ════════════════════════════════ -->
 <div class="page active" id="p-status">
 
+  <!-- ── QUICK STATS ── -->
   <div class="g4 mb6">
-    <div class="stat"><div class="stat-n" style="color:var(--ye)">0%</div><div class="stat-l">Launchpad Progress</div><div class="pb-wrap"><div class="pb"><div class="pb-f" style="width:0%"></div></div></div></div>
-    <div class="stat"><div class="stat-n" style="color:var(--gr)">4</div><div class="stat-l">Structure Installed</div><div class="stat-s">Pipeline · Funnel · Tags · CV Slots</div></div>
-    <div class="stat"><div class="stat-n" style="color:var(--re)">9</div><div class="stat-l">Hard Blockers</div><div class="stat-s">Nothing is live until these are done</div></div>
-    <div class="stat"><div class="stat-n" style="color:var(--or)">27</div><div class="stat-l">Automation Tags</div><div class="stat-s">Full follow-up logic pre-loaded</div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--ye)">0%</div><div class="stat-l">System Live</div><div class="stat-s">Nothing can fire yet</div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--ye)">4</div><div class="stat-l">Pieces Installed</div><div class="stat-s">Pipeline · Funnel shell · Tags · CV slots</div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--re)">7</div><div class="stat-l">Pieces Orphaned</div><div class="stat-s">Exist but not wired to anything</div></div>
+    <div class="stat"><div class="stat-n" style="color:var(--re)">5</div><div class="stat-l">Pieces Missing</div><div class="stat-s">Phone · Email · Calendar · AI · A2P</div></div>
   </div>
 
-  <div class="sh">🔀 CRM Pipeline — AI Chat Pipeline</div>
-  <div class="card mb6">
-    <div class="flex aic jcsb mb4"><span style="font-size:12px;color:var(--mu)">6 stages · 0 opportunities · Snapshot installed</span><span class="pill pg">Active</span></div>
-    <div class="pipeline">
-      <div class="ps"><span class="e">📬</span>Message Sent<br><span style="color:var(--mu);font-weight:400">No Response</span></div>
-      <div class="ps"><span class="e">💬</span>Lead<br>Responded</div>
-      <div class="ps"><span class="e">💬</span>Multiple<br>Responses</div>
-      <div class="ps"><span class="e">✅</span>Lead<br>Qualified</div>
-      <div class="ps"><span class="e">👍</span>Send To<br>Client</div>
-      <div class="ps"><span class="e">⛔</span>DND</div>
-    </div>
-  </div>
+  <!-- ══ SECTION 1: PUZZLE PIECES ══ -->
+  <div class="sh">🧩 The Puzzle Pieces — What's in the Account Right Now</div>
+  <div style="font-size:12px;color:var(--mu);margin-bottom:18px">Think of each GHL component as a puzzle piece. The snapshot installed the frame and some pieces — but they aren't connected yet. Here's exactly what's there and why nothing works.</div>
 
-  <div class="sh">🔧 Setup Status</div>
-  <div class="g2 mb6">
-    <div>
-      <div style="font-size:11px;font-weight:700;color:var(--gr);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">✅ Installed</div>
-      <div style="display:flex;flex-direction:column;gap:7px">
-        <div class="sr"><span class="ico">🔀</span><span class="lbl">AI Chat Pipeline (6 stages)</span><span class="pill pg">Done</span></div>
-        <div class="sr"><span class="ico">🔻</span><span class="lbl">Roofing Leads Funnel</span><span class="pill py">1 Step Only</span></div>
-        <div class="sr"><span class="ico">🏷️</span><span class="lbl">27 Automation Tags</span><span class="pill pg">Done</span></div>
-        <div class="sr"><span class="ico">⚙️</span><span class="lbl">11 Custom Value Placeholders</span><span class="pill pr">All Empty</span></div>
-        <div class="sr"><span class="ico">👥</span><span class="lbl">2 Users (Neel P. + Jon M.)</span><span class="pill pg">Done</span></div>
-        <div class="sr"><span class="ico">📋</span><span class="lbl">5 Example Contacts</span><span class="pill py">Sample Only</span></div>
+  <!-- Layer 1: Entry / Capture -->
+  <div class="layer-block">
+    <div class="layer-hd"><div class="layer-num">1</div><div><div class="layer-title">Entry &amp; Lead Capture</div><div class="layer-subtitle">How leads get into the system</div></div></div>
+    <div class="layer-cards">
+      <div class="pc partial">
+        <div class="pc-badge">🟡 Partial</div>
+        <div class="pc-ico">📋</div>
+        <div class="pc-title">Roofing Leads Funnel</div>
+        <div class="pc-desc">1 step exists — basic contact form. Fields: Name, Phone, Email. Has SMS consent language. But: <strong style="color:var(--ye)">[BUSINESS NAME]</strong> shows blank in consent copy, no thank-you page, no calendar booking step.</div>
+        <div class="pc-fix">→ Expand to 3 steps: Hero + Form → Calendar widget → Thank-you page</div>
       </div>
-    </div>
-    <div>
-      <div style="font-size:11px;font-weight:700;color:var(--re);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">❌ Missing — Nothing Works Without These</div>
-      <div style="display:flex;flex-direction:column;gap:7px">
-        <div class="sr" style="border-color:rgba(239,68,68,.25)"><span class="ico">📝</span><span class="lbl">A2P 10DLC Registration</span><span class="det">Takes 2–4 weeks — must start TODAY</span><span class="pill pr">Critical</span></div>
-        <div class="sr" style="border-color:rgba(239,68,68,.25)"><span class="ico">📞</span><span class="lbl">Phone Number</span><span class="det">No SMS / calls possible</span><span class="pill pr">Critical</span></div>
-        <div class="sr" style="border-color:rgba(239,68,68,.25)"><span class="ico">📧</span><span class="lbl">Email Service (SMTP)</span><span class="det">No email automation</span><span class="pill pr">Critical</span></div>
-        <div class="sr" style="border-color:rgba(239,68,68,.25)"><span class="ico">⚡</span><span class="lbl">Automation Workflows</span><span class="det">Zero workflows built</span><span class="pill pr">Critical</span></div>
-        <div class="sr" style="border-color:rgba(239,68,68,.25)"><span class="ico">📅</span><span class="lbl">Booking Calendar</span><span class="det">Calendar link custom value = empty</span><span class="pill pr">Critical</span></div>
-        <div class="sr" style="border-color:rgba(234,179,8,.25)"><span class="ico">📘</span><span class="lbl">Facebook Integration</span><span class="det">fb lead tag orphaned</span><span class="pill py">High</span></div>
+      <div class="pc orphaned">
+        <div class="pc-badge">🟠 Orphaned</div>
+        <div class="pc-ico">📱</div>
+        <div class="pc-title">Facebook Lead Ad Tag</div>
+        <div class="pc-desc">Tag <code style="font-size:10px;background:var(--s4);padding:1px 5px;border-radius:3px">fb lead</code> exists in the system. But: no Facebook page is connected to GHL. Any FB leads would hit a dead end — tag with no workflow listening to it.</div>
+        <div class="pc-fix">→ Connect FB Business Page → Settings → Integrations</div>
       </div>
     </div>
   </div>
 
-  <div class="sh">⚙️ Custom Values — Fill These First</div>
-  <div class="card mb6">
-    <table class="cv-t">
-      <tr><td>Business Name</td><td>{{custom_values.business_name}}</td><td><span class="pill pr">Empty</span></td></tr>
-      <tr><td>Business Owner</td><td>{{custom_values.business_owner}}</td><td><span class="pill pr">Empty</span></td></tr>
-      <tr><td>Calendar Link</td><td>{{custom_values.calendar_link}}</td><td><span class="pill pr">Empty</span></td></tr>
-      <tr><td>From Email Address</td><td>{{custom_values.from_email_address}}</td><td><span class="pill pr">Empty</span></td></tr>
-      <tr><td>Notification Email</td><td>{{custom_values.notification_email}}</td><td><span class="pill pr">Empty</span></td></tr>
-      <tr><td>Email Name</td><td>{{custom_values.email_name}}</td><td><span class="pill pr">Empty</span></td></tr>
-      <tr><td>First Outgoing SMS</td><td>{{custom_values.first_outgoing_sms_message}}</td><td><span class="pill pr">Empty</span></td></tr>
-      <tr><td>Bump SMS 1</td><td>{{custom_values.bump_sms_1}}</td><td><span class="pill pr">Empty</span></td></tr>
-      <tr><td>Bump SMS 2</td><td>{{custom_values.bump_sms_2}}</td><td><span class="pill pr">Empty</span></td></tr>
-      <tr><td>Bump SMS 3</td><td>{{custom_values.bump_sms_3}}</td><td><span class="pill pr">Empty</span></td></tr>
-      <tr><td>Webhook (Prince Charming)</td><td>{{custom_values.webhook_prince_charming...}}</td><td><span class="pill pr">Empty</span></td></tr>
-    </table>
+  <!-- Layer 2: Workflows -->
+  <div class="layer-block">
+    <div class="layer-hd"><div class="layer-num">2</div><div><div class="layer-title">Automation Workflows</div><div class="layer-subtitle">The "if this, then that" logic engine — these are the workflows you see in the account</div></div></div>
+    <div class="layer-cards">
+      <div class="pc orphaned">
+        <div class="pc-badge">🟠 Orphaned — Can't Fire</div>
+        <div class="pc-ico">⚡</div>
+        <div class="pc-title">First Message Workflow(s)</div>
+        <div class="pc-desc">Snapshot installed workflow(s) to send <code style="font-size:10px;background:var(--s4);padding:1px 4px;border-radius:3px">{{custom_values.first_outgoing_sms_message}}</code>. <strong style="color:var(--re)">3 reasons it can't fire:</strong> CV is empty · No phone number · No entry trigger connecting the funnel to this workflow.</div>
+        <div class="pc-fix">→ Fill CV + buy phone + add "Contact Created" trigger pointing to funnel</div>
+      </div>
+      <div class="pc orphaned">
+        <div class="pc-badge">🟠 Orphaned — Can't Fire</div>
+        <div class="pc-ico">🔄</div>
+        <div class="pc-title">Bump Sequence Workflows</div>
+        <div class="pc-desc">Workflows exist that use <code style="font-size:10px;background:var(--s4);padding:1px 4px;border-radius:3px">bump_sms_1/2/3</code> CVs and <code style="font-size:10px;background:var(--s4);padding:1px 4px;border-radius:3px">bump 1.1 / bump 2.1 / bump 3</code> tags. These are the Day 1/3/7 follow-up messages. Same blocks: empty CVs + no phone = nothing sends.</div>
+        <div class="pc-fix">→ Fill bump CVs + connect via First Message workflow output</div>
+      </div>
+      <div class="pc orphaned">
+        <div class="pc-badge">🟠 Orphaned — Unclear Purpose</div>
+        <div class="pc-ico">📄</div>
+        <div class="pc-title">"Proposal / Message" Workflows</div>
+        <div class="pc-desc">Snapshot also installed generic template workflows (possibly "Prince Charming" sequence or proposal-style messages). These appear disconnected from any trigger. They exist as drafts with no entry point and no CV content.</div>
+        <div class="pc-fix">→ Audit each: keep what maps to a real step, delete or repurpose the rest</div>
+      </div>
+      <div class="pc missing">
+        <div class="pc-badge">⬜ Not Built</div>
+        <div class="pc-ico">📅</div>
+        <div class="pc-title">Appointment Reminder Workflow</div>
+        <div class="pc-desc">Nothing built to handle calendar bookings. No confirmation SMS/email, no 24hr or 1hr reminder, no no-show recovery message.</div>
+        <div class="pc-fix">→ Build from scratch — trigger: Calendar Appointment Created</div>
+      </div>
+    </div>
   </div>
 
-  <div class="sh">🏷️ 27 Tags — Full System Pre-Loaded</div>
+  <!-- Layer 3: CRM / Data -->
+  <div class="layer-block">
+    <div class="layer-hd"><div class="layer-num">3</div><div><div class="layer-title">CRM &amp; Data Layer</div><div class="layer-subtitle">The memory of the system — pipelines, tags, and configuration values</div></div></div>
+    <div class="layer-cards">
+      <div class="pc active">
+        <div class="pc-badge">✅ Active — Ready to Use</div>
+        <div class="pc-ico">🔀</div>
+        <div class="pc-title">AI Chat Pipeline (6 Stages)</div>
+        <div class="pc-desc">Message Sent → Lead Responded → Multiple Responses → Lead Qualified → Send To Client → DND. Correctly structured. 0 opportunities in it — needs leads flowing in from a working workflow.</div>
+        <div class="pc-fix">✓ Already built — just needs the workflow layer working</div>
+      </div>
+      <div class="pc partial">
+        <div class="pc-badge">🟡 Partial — Defined, Not Active</div>
+        <div class="pc-ico">🏷️</div>
+        <div class="pc-title">27 Automation Tags</div>
+        <div class="pc-desc">All tag groups defined: AI Control (3), Bump Follow-ups (9), Lead Stages (8), System (7). Tags exist in GHL but nothing auto-applies them — no active workflow is running tag add/remove actions yet.</div>
+        <div class="pc-fix">✓ Tags are correct — will activate once workflows are wired</div>
+      </div>
+      <div class="pc broken">
+        <div class="pc-badge">🔴 Broken — Blocks Everything</div>
+        <div class="pc-ico">⚙️</div>
+        <div class="pc-title">11 Custom Values — All Empty</div>
+        <div class="pc-desc">business_name, business_owner, calendar_link, from_email_address, notification_email, first_outgoing_sms, bump_sms_1, bump_sms_2, bump_sms_3, email_name, webhook_prince_charming. Every workflow template pulls from these. Empty = blank/broken messages.</div>
+        <div class="pc-fix">🔴 DO THIS FIRST — 30 minutes to fill, unblocks all workflows</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Layer 4: Communication Channels -->
+  <div class="layer-block">
+    <div class="layer-hd"><div class="layer-num">4</div><div><div class="layer-title">Communication Channels</div><div class="layer-subtitle">The pipes workflows send messages through — all currently blocked</div></div></div>
+    <div class="layer-cards">
+      <div class="pc broken">
+        <div class="pc-badge">🔴 Blocked — #1 Blocker</div>
+        <div class="pc-ico">📱</div>
+        <div class="pc-title">Phone Number + A2P 10DLC</div>
+        <div class="pc-desc">No dedicated number purchased. A2P 10DLC (business SMS registration with carriers) not filed. Without both: zero SMS automation can run. A2P approval takes 2–4 weeks — every day of delay = days without automation.</div>
+        <div class="pc-fix">🔴 Buy local number TODAY + file A2P simultaneously</div>
+      </div>
+      <div class="pc broken">
+        <div class="pc-badge">🔴 Blocked</div>
+        <div class="pc-ico">📧</div>
+        <div class="pc-title">Email Service (SMTP)</div>
+        <div class="pc-desc">No email provider connected. LC Email (built-in) or external SMTP (e.g. Google Workspace) needs to be configured. Without this: no confirmation emails, no estimate follow-ups, no notifications.</div>
+        <div class="pc-fix">→ Connect LC Email or Google Workspace SMTP in Settings</div>
+      </div>
+      <div class="pc missing">
+        <div class="pc-badge">⬜ Not Configured</div>
+        <div class="pc-ico">🤖</div>
+        <div class="pc-title">AI Conversation Agent</div>
+        <div class="pc-desc">Module exists in the platform. 0 agents built. No knowledge base, no bot persona, no roofing-specific training. Currently the "AI Chat Pipeline" has no actual AI behind it.</div>
+        <div class="pc-fix">→ Create Conversation AI bot → train on services + FAQs + pricing</div>
+      </div>
+      <div class="pc missing">
+        <div class="pc-badge">⬜ Missing</div>
+        <div class="pc-ico">📅</div>
+        <div class="pc-title">Booking Calendar</div>
+        <div class="pc-desc">No calendar created for roof inspections. The <code style="font-size:10px;background:var(--s4);padding:1px 4px;border-radius:3px">calendar_link</code> custom value is empty. AI can't book appointments and the funnel has no booking step.</div>
+        <div class="pc-fix">→ Create "Roof Inspection" calendar → copy booking link to CV</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2: GHL ARCHITECTURE FLOW ══ -->
+  <div class="sh mt6">🏗️ GHL Architecture — How These Pieces Wire Together</div>
+  <div style="font-size:12px;color:var(--mu);margin-bottom:14px">GHL has 5 layers. Data flows left to right. Each arrow is a connection point that currently doesn't exist. Once all 5 layers are connected, the system runs itself.</div>
+
+  <!-- Row 1: Current state (broken) -->
+  <div style="font-size:11px;font-weight:700;color:var(--re);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">⚠️ Current State — Connections Broken</div>
+  <div class="arch-strip mb6">
+    <div class="ab err">
+      <div class="ab-lyr">Layer 1</div>
+      <div class="ab-ico">📋</div>
+      <div class="ab-name">Entry</div>
+      <div class="ab-sub">1-step form · [BUSINESS NAME] blank</div>
+      <div class="ab-tag warn">Partial</div>
+    </div>
+    <div class="ab err">
+      <div class="ab-lyr">Layer 2</div>
+      <div class="ab-ico">⚡</div>
+      <div class="ab-name">Workflow Trigger</div>
+      <div class="ab-sub">No trigger connects form → workflow</div>
+      <div class="ab-tag err">Missing Link</div>
+    </div>
+    <div class="ab err">
+      <div class="ab-lyr">Layer 3</div>
+      <div class="ab-ico">🔄</div>
+      <div class="ab-name">Workflow Actions</div>
+      <div class="ab-sub">Workflows exist — CVs empty, no phone</div>
+      <div class="ab-tag err">Can't Fire</div>
+    </div>
+    <div class="ab err">
+      <div class="ab-lyr">Layer 4</div>
+      <div class="ab-ico">📱</div>
+      <div class="ab-name">SMS / Email</div>
+      <div class="ab-sub">No phone number · No SMTP</div>
+      <div class="ab-tag err">Blocked</div>
+    </div>
+    <div class="ab">
+      <div class="ab-lyr">Layer 5</div>
+      <div class="ab-ico">🗂️</div>
+      <div class="ab-name">CRM Update</div>
+      <div class="ab-sub">Pipeline ready · Tags ready · 0 contacts</div>
+      <div class="ab-tag warn">Empty</div>
+    </div>
+  </div>
+
+  <!-- Row 2: Full build (working) -->
+  <div style="font-size:11px;font-weight:700;color:var(--gr);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">✅ Full Build — All Layers Connected</div>
+  <div class="arch-strip mb8">
+    <div class="ab ok">
+      <div class="ab-lyr">Layer 1</div>
+      <div class="ab-ico">📋</div>
+      <div class="ab-name">Entry</div>
+      <div class="ab-sub">3-step funnel · Form → Book → Thank-you</div>
+      <div class="ab-tag ok">Live</div>
+    </div>
+    <div class="ab ok">
+      <div class="ab-lyr">Layer 2</div>
+      <div class="ab-ico">⚡</div>
+      <div class="ab-name">Trigger</div>
+      <div class="ab-sub">Form submit fires workflow in &lt;60s</div>
+      <div class="ab-tag ok">Wired</div>
+    </div>
+    <div class="ab ok">
+      <div class="ab-lyr">Layer 3</div>
+      <div class="ab-ico">🤖</div>
+      <div class="ab-name">Workflow Actions</div>
+      <div class="ab-sub">SMS sent · Tag applied · Pipeline moved · Bumps scheduled</div>
+      <div class="ab-tag ok">Running</div>
+    </div>
+    <div class="ab ok">
+      <div class="ab-lyr">Layer 4</div>
+      <div class="ab-ico">📱</div>
+      <div class="ab-name">SMS + Email + AI</div>
+      <div class="ab-sub">A2P registered · Local number · SMTP + AI agent live</div>
+      <div class="ab-tag ok">Delivered</div>
+    </div>
+    <div class="ab ok">
+      <div class="ab-lyr">Layer 5</div>
+      <div class="ab-ico">🗂️</div>
+      <div class="ab-name">CRM Update</div>
+      <div class="ab-sub">Auto stage moves · Tags fire · Opportunities tracked</div>
+      <div class="ab-tag ok">Auto</div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3: BEFORE vs AFTER ══ -->
+  <div class="sh">📊 Before vs After — Every Component</div>
   <div class="card">
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
-      <div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--or);margin-bottom:8px">AI Control</div><div class="tc"><span class="tg o">ai stop</span><span class="tg o">reply generating</span><span class="tg o">manual takeover</span></div></div>
-      <div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--bl);margin-bottom:8px">Bump Follow-ups</div><div class="tc"><span class="tg b">first message</span><span class="tg b">second message</span><span class="tg b">bump 1.1</span><span class="tg b">bump 2.1</span><span class="tg b">bump 3</span><span class="tg b">bump response</span><span class="tg b">bump 1 reply</span><span class="tg b">bump 2 reply</span><span class="tg b">no bump</span></div></div>
-      <div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gr);margin-bottom:8px">Lead Stages</div><div class="tc"><span class="tg g">lead</span><span class="tg g">warm lead</span><span class="tg g">qualify</span><span class="tg g">responded</span><span class="tg g">multiple messages</span><span class="tg g">appointment booked</span><span class="tg g">schedule</span><span class="tg g">follow-up</span></div></div>
-      <div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--pu);margin-bottom:8px">System</div><div class="tc"><span class="tg p">fb lead</span><span class="tg p">dnd</span><span class="tg p">goodbye</span><span class="tg p">no response</span><span class="tg p">high priority</span><span class="tg p">dbr android</span><span class="tg p">sleeping beauty android optin</span></div></div>
+    <div style="border:1px solid var(--bd2);border-radius:8px;overflow:hidden;">
+      <table class="ba-table">
+        <thead><tr><th>Component</th><th>🔴 Now (Broken State)</th><th>✅ Full Build (Working State)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>📋 Landing Funnel</td>
+            <td><div class="ba-x">1 step, bare form</div><div class="ba-x">[BUSINESS NAME] shows blank</div><div class="ba-x">No calendar booking step</div></td>
+            <td><div class="ba-c">3 steps: hero → form → book → thanks</div><div class="ba-c">Business name filled, consent copy correct</div><div class="ba-c">Calendar widget on step 3, leads self-book</div></td>
+          </tr>
+          <tr>
+            <td>⚙️ Custom Values</td>
+            <td><div class="ba-x">All 11 CVs empty</div><div class="ba-x">Every automation sends blank messages</div></td>
+            <td><div class="ba-c">All filled: name, SMS scripts, email, calendar link</div><div class="ba-c">All automations pull live, accurate content</div></td>
+          </tr>
+          <tr>
+            <td>📱 Phone + A2P</td>
+            <td><div class="ba-x">No number purchased</div><div class="ba-x">A2P not filed — SMS blocked by carriers</div></td>
+            <td><div class="ba-c">Local area code number active</div><div class="ba-c">A2P approved — 95%+ SMS deliverability</div></td>
+          </tr>
+          <tr>
+            <td>⚡ First SMS Workflow</td>
+            <td><div class="ba-x">Workflow exists but has no trigger</div><div class="ba-x">CV empty — would send blank message</div><div class="ba-x">No phone — can't send anyway</div></td>
+            <td><div class="ba-c">Fires within 60s of form submit</div><div class="ba-c">Sends personalized intro + inspection offer</div><div class="ba-c">Tags contact "first message", moves pipeline to Stage 1</div></td>
+          </tr>
+          <tr>
+            <td>🔄 Bump Sequence</td>
+            <td><div class="ba-x">Workflows orphaned, no entry trigger</div><div class="ba-x">Bump CVs empty — would send blank</div></td>
+            <td><div class="ba-c">Day 1/3/7 auto-fires if no reply</div><div class="ba-c">Stops immediately on any lead response</div><div class="ba-c">Recovers 20–30% of "dead" leads</div></td>
+          </tr>
+          <tr>
+            <td>📄 "Proposal" Workflows</td>
+            <td><div class="ba-x">Snapshot template workflows — purpose unclear</div><div class="ba-x">No trigger, no CV content, just orphaned drafts</div></td>
+            <td><div class="ba-c">Audited: mapped to real steps or deleted</div><div class="ba-c">Each workflow has 1 clear trigger + 1 clear purpose</div></td>
+          </tr>
+          <tr>
+            <td>🤖 AI Conversation Agent</td>
+            <td><div class="ba-x">Module exists, 0 agents configured</div><div class="ba-x">No knowledge base, no training</div></td>
+            <td><div class="ba-c">Bot trained: services, pricing, service area, FAQs</div><div class="ba-c">Books inspections 24/7, handles objections</div></td>
+          </tr>
+          <tr>
+            <td>📅 Booking Calendar</td>
+            <td><div class="ba-x">No calendar created</div><div class="ba-x">calendar_link CV empty — AI can't book</div></td>
+            <td><div class="ba-c">Roof Inspection calendar with buffer times</div><div class="ba-c">Link in CV — AI books directly, reminders auto-fire</div></td>
+          </tr>
+          <tr>
+            <td>🔀 AI Chat Pipeline</td>
+            <td><div class="ba-x">6 stages ready, 0 contacts in it</div><div class="ba-x">No workflows moving contacts through stages</div></td>
+            <td><div class="ba-c">Contacts auto-move: form sub → reply → qualified → booked</div><div class="ba-c">Owner sees live pipeline status at a glance</div></td>
+          </tr>
+          <tr>
+            <td>🏷️ 27 Tags</td>
+            <td><div class="ba-x">All defined, nothing auto-applies them</div></td>
+            <td><div class="ba-c">Applied/removed automatically by workflow logic</div><div class="ba-c">Drive bump timing, AI handoff, DND rules</div></td>
+          </tr>
+          <tr>
+            <td>📧 Email</td>
+            <td><div class="ba-x">No SMTP connected — zero emails can send</div></td>
+            <td><div class="ba-c">Confirmations, reminders, estimate follow-ups auto-send</div></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
+
 </div>
 
 <!-- ════════════════════════════════
