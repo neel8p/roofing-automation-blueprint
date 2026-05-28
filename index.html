@@ -255,6 +255,59 @@ button{font-family:inherit;}
 .jcsb{justify-content:space-between;}
 .gap2{gap:8px;}
 .gap3{gap:12px;}
+
+/* ══ AUTOMATION FLOW DIAGRAM ══ */
+.flow-diagram{display:flex;flex-direction:column;align-items:center;gap:2px;max-width:760px;margin:0 auto;}
+
+.fz-zone{width:100%;background:rgba(59,130,246,.03);border:1px solid rgba(59,130,246,.18);border-radius:12px;padding:16px;}
+.fz-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;}
+.fz-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
+.fz-source{padding:8px 14px;background:var(--s3);border:1px solid var(--bd3);border-radius:8px;font-size:12px;font-weight:600;color:var(--mu3);}
+
+.fz-down{width:2px;height:22px;background:var(--bd3);position:relative;margin:0;}
+.fz-down::after{content:'';position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid var(--bd3);}
+
+.fn{width:100%;display:flex;align-items:center;gap:14px;background:var(--s2);border:1px solid var(--bd2);border-radius:12px;padding:14px 18px;}
+.fn-ico{font-size:26px;flex-shrink:0;}
+.fn-title{font-size:14px;font-weight:700;margin-bottom:4px;}
+.fn-sub{font-size:12px;color:var(--mu);}
+.fn-badge{margin-left:auto;flex-shrink:0;background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.25);border-radius:6px;padding:5px 12px;font-size:11px;font-weight:700;color:var(--or);white-space:nowrap;}
+.fn-badge.green{background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.25);color:var(--gr);}
+.fn-orange{background:rgba(249,115,22,.04);border-color:rgba(249,115,22,.25);}
+.fn-blue{background:rgba(59,130,246,.04);border-color:rgba(59,130,246,.25);}
+.fn-green{background:rgba(34,197,94,.06);border-color:rgba(34,197,94,.3);}
+
+.fd-diamond{width:100%;display:flex;justify-content:center;padding:6px 0;}
+.fd-diamond-box{background:var(--s3);border:2px solid var(--or);border-radius:8px;padding:10px 32px;font-size:13px;font-weight:800;color:var(--or);}
+
+.fd-split{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:12px;border-left:2px dashed var(--bd3);border-right:2px dashed var(--bd3);border-bottom:2px dashed var(--bd3);border-radius:0 0 12px 12px;padding:12px;background:rgba(0,0,0,.12);}
+.fd-lane{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.fd-lane-head{font-size:11px;font-weight:700;padding:5px 14px;border-radius:999px;margin-bottom:2px;}
+.fd-lane-head.yes{background:rgba(34,197,94,.1);color:var(--gr);border:1px solid rgba(34,197,94,.25);}
+.fd-lane-head.no{background:rgba(239,68,68,.08);color:var(--re);border:1px solid rgba(239,68,68,.2);}
+.fd-lane-node{width:100%;}
+.fd-lane-arrow{font-size:14px;color:var(--mu);line-height:1;}
+
+.fn-mini{background:var(--s2);border:1px solid var(--bd2);border-radius:8px;padding:10px 13px;width:100%;}
+.fn-mini-title{font-size:12px;font-weight:700;margin-bottom:3px;}
+.fn-mini-sub{font-size:11px;color:var(--mu);}
+.fn-mini-blue{background:rgba(59,130,246,.05);border-color:rgba(59,130,246,.22);}
+.fn-mini-green{background:rgba(34,197,94,.06);border-color:rgba(34,197,94,.25);}
+.fn-mini-orange{background:rgba(249,115,22,.05);border-color:rgba(249,115,22,.22);}
+.fn-mini-purple{background:rgba(168,85,247,.05);border-color:rgba(168,85,247,.22);}
+.fn-mini-dead{background:rgba(100,116,139,.05);border-color:rgba(100,116,139,.2);opacity:.8;}
+.fn-mini-win{background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.3);}
+
+.fd-merge{width:100%;display:flex;align-items:center;gap:12px;padding:10px 0 2px;}
+.fd-merge-line{flex:1;height:1px;background:var(--bd3);}
+.fd-merge-label{font-size:11px;color:var(--mu);white-space:nowrap;}
+
+.fn-mini-wrap{display:flex;gap:8px;width:100%;overflow-x:auto;}
+.fn-mini-wrap .fn-mini{flex:1;min-width:110px;text-align:center;}
+.fn-mini-wrap .fn-mini-title{font-size:12px;}
+.fn-mini-wrap-arrow{display:flex;align-items:center;color:var(--mu);padding:0 2px;font-size:14px;flex-shrink:0;}
+
+@media(max-width:600px){.fd-split{grid-template-columns:1fr;}.fn-badge{display:none;}}
 </style>
 </head>
 <body>
@@ -270,6 +323,7 @@ button{font-family:inherit;}
     <button class="nav-btn active" onclick="showPage('status',this)">📍 Current State</button>
     <button class="nav-btn" onclick="showPage('plan',this)">🗂️ Dev Plan</button>
     <button class="nav-btn" onclick="showPage('bizmap',this)">📊 Business Map</button>
+    <button class="nav-btn" onclick="showPage('flow',this)">🔄 Automation Flow</button>
     <div class="status-badge"><div class="pulse"></div>In Progress</div>
   </div>
 </div>
@@ -539,6 +593,228 @@ button{font-family:inherit;}
     </div>
   </div>
 
+</div>
+
+<!-- ════════════════════════════════
+     PAGE 4 — AUTOMATION FLOW
+════════════════════════════════ -->
+<div class="page" id="p-flow">
+<div class="sh">🔄 End-to-End Roofing Automation Flow</div>
+<div class="flow-diagram">
+
+  <!-- 1. LEAD SOURCES -->
+  <div class="fz-zone" style="background:rgba(59,130,246,.03);border-color:rgba(59,130,246,.18)">
+    <div class="fz-label" style="color:var(--bl)">📢 Step 1 — Lead Sources</div>
+    <div class="fz-row">
+      <div class="fz-source">📱 FB / IG Ads</div>
+      <div class="fz-source">🔍 Google Ads</div>
+      <div class="fz-source">🚪 Door-to-Door</div>
+      <div class="fz-source">🌩️ Storm Chase</div>
+      <div class="fz-source">🤝 Referral</div>
+    </div>
+  </div>
+
+  <div class="fz-down"></div>
+
+  <!-- 2. LANDING PAGE -->
+  <div class="fn fn-blue">
+    <div class="fn-ico">📋</div>
+    <div style="flex:1">
+      <div class="fn-title">Landing Page — "Free Roof Inspection" Opt-in Form</div>
+      <div class="fn-sub">Captures: Name · Phone · Address · Roof type · Issue description</div>
+    </div>
+  </div>
+
+  <div class="fz-down"></div>
+
+  <!-- 3. CRM INTAKE -->
+  <div class="fn">
+    <div class="fn-ico">🗂️</div>
+    <div style="flex:1">
+      <div class="fn-title">Contact Created in GHL CRM</div>
+      <div class="fn-sub">Auto-tagged "lead" · Added to AI Chat Pipeline · Stage 1: Message Sent</div>
+    </div>
+  </div>
+
+  <div class="fz-down"></div>
+
+  <!-- 4. AI FIRST RESPONSE -->
+  <div class="fn fn-orange">
+    <div class="fn-ico">🤖</div>
+    <div style="flex:1">
+      <div class="fn-title">Automation Fires — AI Sends First SMS</div>
+      <div class="fn-sub">Introduces the business · Asks about the issue · Offers to book a free inspection</div>
+    </div>
+    <div class="fn-badge">⚡ &lt;60 seconds</div>
+  </div>
+
+  <div class="fz-down"></div>
+
+  <!-- DECISION 1: Reply? -->
+  <div class="fd-diamond"><div class="fd-diamond-box">💬 Did the lead reply?</div></div>
+
+  <!-- SPLIT 1 -->
+  <div class="fd-split">
+    <div class="fd-lane">
+      <div class="fd-lane-head yes">✅ Yes — Lead Replies</div>
+      <div class="fd-lane-node"><div class="fn-mini">
+        <div class="fn-mini-title">🤖 AI Conversation Agent</div>
+        <div class="fn-mini-sub">Qualifies needs · Handles objections · Checks service area</div>
+      </div></div>
+      <div class="fd-lane-arrow">↓</div>
+      <div class="fd-lane-node"><div class="fn-mini fn-mini-blue">
+        <div class="fn-mini-title">📅 Books Inspection</div>
+        <div class="fn-mini-sub">Sends calendar link · Lead self-schedules · Pipeline → Stage 3</div>
+      </div></div>
+      <div class="fd-lane-arrow">↓</div>
+      <div class="fd-lane-node"><div class="fn-mini fn-mini-green">
+        <div class="fn-mini-title">✅ Appointment Confirmed</div>
+        <div class="fn-mini-sub">SMS + Email confirmation fires immediately</div>
+      </div></div>
+    </div>
+    <div class="fd-lane">
+      <div class="fd-lane-head no">❌ No Reply</div>
+      <div class="fd-lane-node"><div class="fn-mini">
+        <div class="fn-mini-title">💬 Day 1 — Bump 1</div>
+        <div class="fn-mini-sub">"Hey, still interested in a free inspection?"</div>
+      </div></div>
+      <div class="fd-lane-arrow">↓</div>
+      <div class="fd-lane-node"><div class="fn-mini">
+        <div class="fn-mini-title">💬 Day 3 — Bump 2</div>
+        <div class="fn-mini-sub">"We have slots open this week..."</div>
+      </div></div>
+      <div class="fd-lane-arrow">↓</div>
+      <div class="fd-lane-node"><div class="fn-mini">
+        <div class="fn-mini-title">💬 Day 7 — Bump 3 (Breakup)</div>
+        <div class="fn-mini-sub">"I'll stop following up — reach out anytime"</div>
+      </div></div>
+      <div class="fd-lane-arrow">↓</div>
+      <div class="fd-lane-node"><div class="fn-mini fn-mini-dead">
+        <div class="fn-mini-title">🔄 Re-engage at 30 Days</div>
+        <div class="fn-mini-sub">New angle: seasonal offer or storm event trigger</div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="fd-merge">
+    <div class="fd-merge-line"></div>
+    <div class="fd-merge-label">Qualified leads from either path continue below</div>
+    <div class="fd-merge-line"></div>
+  </div>
+
+  <div class="fz-down"></div>
+
+  <!-- 5. INSPECTION BOOKED + REMINDERS -->
+  <div class="fn fn-orange">
+    <div class="fn-ico">📅</div>
+    <div style="flex:1">
+      <div class="fn-title">Inspection Booked — Reminder Sequence Fires</div>
+      <div class="fn-sub">Instant confirmation SMS + Email · 24hr reminder · 1hr reminder with exact address</div>
+    </div>
+    <div class="fn-badge green">No-shows 30% → &lt;10%</div>
+  </div>
+
+  <div class="fz-down"></div>
+
+  <!-- 6. ESTIMATE -->
+  <div class="fn">
+    <div class="fn-ico">🔨</div>
+    <div style="flex:1">
+      <div class="fn-title">Inspection Done → Estimate Sent</div>
+      <div class="fn-sub">Roofer inspects property · Estimate delivered by email/SMS link</div>
+    </div>
+  </div>
+
+  <div class="fz-down"></div>
+
+  <!-- DECISION 2: Signed? -->
+  <div class="fd-diamond"><div class="fd-diamond-box">✍️ Did they sign the estimate?</div></div>
+
+  <!-- SPLIT 2 -->
+  <div class="fd-split">
+    <div class="fd-lane">
+      <div class="fd-lane-head yes">✅ Signed Immediately</div>
+      <div class="fd-lane-node"><div class="fn-mini fn-mini-win">
+        <div class="fn-mini-title" style="color:var(--gr)">💰 Job Won!</div>
+        <div class="fn-mini-sub">Opportunity stage → Won · Crew scheduled</div>
+      </div></div>
+    </div>
+    <div class="fd-lane">
+      <div class="fd-lane-head no">⏳ Not Signed Yet</div>
+      <div class="fd-lane-node"><div class="fn-mini">
+        <div class="fn-mini-title">📩 48hr Follow-up SMS</div>
+        <div class="fn-mini-sub">"Any questions about your estimate?"</div>
+      </div></div>
+      <div class="fd-lane-arrow">↓</div>
+      <div class="fd-lane-node"><div class="fn-mini">
+        <div class="fn-mini-title">📩 Day 5 — Final Push</div>
+        <div class="fn-mini-sub">"Our schedule is filling up for the month..."</div>
+      </div></div>
+      <div class="fd-lane-arrow">↓</div>
+      <div class="fd-lane-node"><div class="fn-mini fn-mini-green">
+        <div class="fn-mini-title">✅ Closes 15–25% of cold estimates</div>
+        <div class="fn-mini-sub">Most roofers never follow up — this wins extra jobs</div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="fd-merge">
+    <div class="fd-merge-line"></div>
+    <div class="fd-merge-label">All won jobs continue below</div>
+    <div class="fd-merge-line"></div>
+  </div>
+
+  <div class="fz-down"></div>
+
+  <!-- 7. JOB WON -->
+  <div class="fn fn-green">
+    <div class="fn-ico">🏆</div>
+    <div style="flex:1">
+      <div class="fn-title">Job Won &amp; Completed</div>
+      <div class="fn-sub">Invoice sent · Crew scheduled · Work done · Stage → Closed Won</div>
+    </div>
+  </div>
+
+  <div class="fz-down"></div>
+
+  <!-- 8. POST-JOB SEQUENCE -->
+  <div class="fz-zone" style="background:rgba(34,197,94,.02);border-color:rgba(34,197,94,.2)">
+    <div class="fz-label" style="color:var(--gr)">🔁 Step 8 — Post-Job Growth Sequence</div>
+    <div class="fn-mini-wrap">
+      <div class="fn-mini fn-mini-green" style="text-align:center">
+        <div class="fn-mini-title">📄 Invoice</div>
+        <div class="fn-mini-sub">Instant payment request</div>
+      </div>
+      <div class="fn-mini-wrap-arrow">→</div>
+      <div class="fn-mini fn-mini-blue" style="text-align:center">
+        <div class="fn-mini-title">⭐ Review Ask</div>
+        <div class="fn-mini-sub">+2 Days · Google link</div>
+      </div>
+      <div class="fn-mini-wrap-arrow">→</div>
+      <div class="fn-mini fn-mini-purple" style="text-align:center">
+        <div class="fn-mini-title">🤝 Referral Ask</div>
+        <div class="fn-mini-sub">+30 Days · Incentive offer</div>
+      </div>
+      <div class="fn-mini-wrap-arrow">→</div>
+      <div class="fn-mini fn-mini-orange" style="text-align:center">
+        <div class="fn-mini-title">🌩️ Storm Campaign</div>
+        <div class="fn-mini-sub">Seasonal blast · Zip targets</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fz-down"></div>
+
+  <!-- 9. GROWTH LOOP -->
+  <div class="fn" style="border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.03);justify-content:center;text-align:center">
+    <div class="fn-ico">🔁</div>
+    <div>
+      <div class="fn-title" style="color:var(--gr)">Growth Loop — Back to the Top</div>
+      <div class="fn-sub">More Google reviews → Higher local ranking → More free inbound calls → More leads at zero ad cost</div>
+    </div>
+  </div>
+
+</div><!-- end .flow-diagram -->
 </div>
 
 <!-- ── ADD TICKET MODAL ── -->
